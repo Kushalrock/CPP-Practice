@@ -130,6 +130,20 @@ Node<>* deleteithNode(Node<>* head, int i){
    return head;
 }
 
+//Middle slow fast
+template <class T4 = int>
+Node<T4>* middleNode(Node<T4>* head){
+    Node<T4>* slow = head;
+    Node<T4>* fast = head;
+    while(fast->next && fast->next->next){
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+    if(fast->next!=NULL){
+        return slow->next;
+    }
+    return slow;
+}
 int main(){
     Node<> n1(1);
     Node<> *head = &n1;
@@ -162,6 +176,13 @@ int main(){
     cout<<endl;
     head = deleteithNode(head, 2);
     print(head);
+    cout<<endl;
+    cout<<middleNode(head)->data;
+    cout<<endl;
+    head = deleteithNode(head, 2);
+    print(head);
+    cout<<endl;
+    cout<<middleNode(head)->data;
     // Node<> *getHead = takeInput();
     // print(getHead);
     // cout<<endl;
