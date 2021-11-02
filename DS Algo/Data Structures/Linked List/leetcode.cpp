@@ -121,6 +121,24 @@ public:
         }
         return head;
     }
+    ListNode* sortList(ListNode* head) {
+        if(head==NULL || head->next==NULL) return head;
+        /// break list into two
+        ListNode *slow = head;
+        ListNode *fast = head->next;
+        while(fast && fast->next){
+            slow = slow->next;
+            fast = fast->next->next;
+        }
+        ListNode *n = slow->next;
+        slow->next = NULL;
+        
+        ListNode* a = sortList(head);
+        ListNode* b = sortList(n);
+        
+        head = mergeTwoLists(a,b);
+        return head;
+    }
 };
 
 int main(){
